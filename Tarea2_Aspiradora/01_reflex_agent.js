@@ -32,50 +32,44 @@ function test(states){
 }
 
 function getstate(states){
-	switch (states[0]) {
-		case "A":
-			switch (states[1]) {
+	if (states[0]== "A") {
+		
+		if(states[1] == "DIRTY"){
+			switch (states[2]) {
 				case "DIRTY":
-					switch (states[2]) {
-						case "DIRTY":
-							return 1;
-						case "CLEAN":
+					return 1;
+				case "CLEAN":
 
-							return 3;
-					}
-					break;
-				case "CLEAN":
-					switch (states[2]) {
-						case "DIRTY":
-							return 5;
-						case "CLEAN":
-							states[1]="DIRTY";
-							states[2]="DIRTY";
-							return 7;
-					}
-					break;
+					return 3;
 			}
-			break;
-		case "B":
-			switch (states[1]) {
+		}else if(states[1] == "CLEAN"){
+			
+			switch (states[2]) {
 				case "DIRTY":
-					switch (states[2]) {
-						case "DIRTY":
-							return 2;
-						case "CLEAN":
-							return 4;
-					}
-					break;
+					return 5;
 				case "CLEAN":
-					switch (states[2]) {
-						case "DIRTY":
-							return 6;
-						case "CLEAN":
-							return 8;
-					}
-					break;
+					states[1]="DIRTY";
+					states[2]="DIRTY";
+					return 7;
 			}
-			break;
+		}
+	}else if(states[0] == "B"){
+
+		if(states[1] == "DIRTY"){
+			switch (states[2]) {
+				case "DIRTY":
+					return 2;
+				case "CLEAN":
+					return 4;
+			}
+		}else if(states[1] == "CLEAN"){
+			switch (states[2]) {
+				case "DIRTY":
+					return 6;
+				case "CLEAN":
+					return 8;
+			}
+		}
 	}
 }
 
